@@ -1,0 +1,6 @@
+dependencies {
+
+    implementation project(":ss_security")
+    testImplementation project(":ss_security")
+
+}

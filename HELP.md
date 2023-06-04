@@ -26,3 +26,19 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### Udeerstand the new Gradle
+
+#### gradle structure
+- gradlew
+- settings.gradle
+  - include multi modules
+  - define the root project
+- gradlew.bat
+- gradle/ folder
+  - holds the gradle configuration or wrapper settings
+
+#### gradle changes
+- compile and test compile changes to implmentation and test implementation
+- to make an implementation available through out the application or global scope change it to api and change plugin java to 'java-library'
+- it is advised to use kotlin rather than groovy as best practice
+- settings.gradle should have multi module defines using include('module1','module2')

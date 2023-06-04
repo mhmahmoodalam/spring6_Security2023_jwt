@@ -1,4 +1,4 @@
-package com.example.springsecurity_s6_2023;
+package com.example.ss6;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

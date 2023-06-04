@@ -1,4 +1,4 @@
-package com.example.springsecurity_s6_2023;
+package com.example.ss6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
