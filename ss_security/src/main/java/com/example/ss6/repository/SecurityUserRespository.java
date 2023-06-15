@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface SecurityUserRespository extends JpaRepository<SecurityUser,Long> {
+public interface SecurityUserRespository extends JpaRepository<SecurityUser, Long> {
     @Query("select distinct s from SecurityUser s where upper(s.username) = upper(?1)")
     Optional<SecurityUser> findOneByUsername(String username);
 

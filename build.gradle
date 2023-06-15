@@ -1,9 +1,9 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.1.0' apply false
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0' apply false
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.example'
@@ -14,62 +14,68 @@ apply plugin: 'io.spring.dependency-management'
 defaultTasks 'clean', 'build', 'test'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 subprojects {
-	apply plugin: 'java'
-	apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
 
 
-	sourceCompatibility = '20'
+    sourceCompatibility = '20'
 
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
 
-	configurations {
-		compileOnly {
-			extendsFrom annotationProcessor
-		}
-	}
+        mavenLocal()
+    }
 
-	dependencyManagement {
-		imports {
-			mavenBom SpringBootPlugin.BOM_COORDINATES
-		}
-		dependencies {
-			dependency group:'org.springframework.boot', name:'spring-boot-starter-data-jpa', version:'3.1.0'
-			dependency group:'org.springframework.boot', name:'spring-boot-starter-security', version:'3.1.0'
-			dependency group:'org.springframework.boot', name:'spring-boot-starter-web', version:'3.1.0'
-			dependency group:'org.projectlombok', name:'lombok', version: '1.18.28'
-			dependency group:'jakarta.persistence', name:'jakarta.persistence-api', version:'3.1.0'
-			dependency group:'org.springframework.boot', name:'spring-boot-starter-test', version:'3.1.0'
-		}
-	}
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
-	dependencies {
-		/**** formatting **/
-		implementation 'com.google.googlejavaformat:google-java-format:1.17.0'
-		/**spring dependency**/
-		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-		implementation 'org.springframework.boot:spring-boot-starter-web'
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+        dependencies {
+            dependency group: 'org.springframework.boot',   name: 'spring-boot-starter-data-jpa',   version: '3.1.0'
+            dependency group: 'org.springframework.boot',   name: 'spring-boot-starter-security',   version: '3.1.0'
+            dependency group: 'org.springframework.boot',   name: 'spring-boot-starter-web',        version: '3.1.0'
+            dependency group: 'org.projectlombok',          name: 'lombok',                         version: '1.18.28'
+            dependency group: 'jakarta.persistence',        name: 'jakarta.persistence-api',        version: '3.1.0'
+            dependency group: 'org.springframework.boot',   name: 'spring-boot-starter-test',       version: '3.1.0'
+            dependency group: 'io.jsonwebtoken',            name: 'jjwt-api',                       version: '0.11.5'
+            dependency group: 'io.jsonwebtoken',            name: 'jjwt-impl',                       version: '0.11.5'
+            dependency group: 'io.jsonwebtoken',            name: 'jjwt-jackson',                   version: '0.11.5'
+
+        }
+    }
+
+    dependencies {
+        /**** formatting **/
+        implementation 'com.google.googlejavaformat:google-java-format:1.17.0'
+        /**spring dependency**/
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
 
-		compileOnly 'org.projectlombok:lombok'
-		annotationProcessor 'org.projectlombok:lombok'
-		runtimeOnly 'org.postgresql:postgresql'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        runtimeOnly 'org.postgresql:postgresql'
 
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-		testImplementation 'org.springframework.security:spring-security-test'
-	}
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.security:spring-security-test'
+    }
 
-	tasks.named('test') {
-		useJUnitPlatform()
-	}
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
-	implementation project(":application")
-	testImplementation project(":application")
+    implementation project(":application")
+    testImplementation project(":application")
 }

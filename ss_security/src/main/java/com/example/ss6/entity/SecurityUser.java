@@ -5,6 +5,7 @@ import com.example.ss6.model.enums.CloudRole;
 import com.example.ss6.model.enums.UserType;
 import com.google.common.base.Strings;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,12 +17,11 @@ import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "security_user")
 @Data
+@Builder
 public class SecurityUser implements UserDetails {
 
     @Id
@@ -34,16 +34,16 @@ public class SecurityUser implements UserDetails {
     private String password;
 
 
-
     @Column(name = "tenant_id")
     private int tenantId;
 
     @ElementCollection(targetClass = CloudRole.class, fetch = FetchType.EAGER)
     @CollectionTable(
             name = "security_role",
-            joinColumns = {@JoinColumn(name="security_user_id")}
+            joinColumns = {@JoinColumn(name = "security_user_id")}
     )
     @Column(name = "role", nullable = false)
+    @Builder.Default
     private Set<CloudRole> roles = new HashSet<>();
 
     private String email;
